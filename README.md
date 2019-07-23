@@ -1,0 +1,2 @@
+# NewDjangoTest
+Django Learning project
