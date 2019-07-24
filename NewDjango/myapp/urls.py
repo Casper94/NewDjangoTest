@@ -21,5 +21,8 @@ urlpatterns = [
     path('', views.test,name='index'),
     path('home',views.home,name='home'),
     path('contactus',views.contactus,name='contactus'),
+    path('delete/<int:id>', views.delete,name = 'delete'),
+    path('update/<int:id>', views.update,name = 'update'),
+    path('edit/<int:id>', views.edit,name = 'edit'),
 
 ]

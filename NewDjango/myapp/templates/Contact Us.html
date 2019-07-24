@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <title>Contact Us</title>
 </head>
-<form method="post" action="/test">
-    <label>Name</label>
-    {{form.name}}
-    <label>Address</label>
-    {{form.address}}
-
-</form>
+<body>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+    {%for stud in students%}
+    <tr>
+        <td>{{stud.name}}</td>
+        <td>{{stud.address}}
+        <td><a href="/delete/{{stud.id}}">Delete</a> <a href="/edit/{{stud.id}}">Edit</a> </td>
+    </tr>
+    {%endfor%}
+</table>
 
 </body>
 </html>

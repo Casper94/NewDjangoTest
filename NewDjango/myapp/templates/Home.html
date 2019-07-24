@@ -11,11 +11,13 @@
     <a href="{%url 'index'%}">Index</a>
     <a href="{%url 'contactus'%}">Contact us</a>
     <a href="{%url 'logout'%}">Log Out</a>
-{%if user.is_authenticated%}
-    <h2>Hello {{user.username}}</h2>
-{%else%}
-    <h2>Hello User</h2>
-{%endif%}
+
+<form method="post" action="{%url 'home'%}">
+    {%csrf_token%}
+    {{form}}
+    <button type = "submit" value="submit">Submit</button>
+
+</form>
 
 
 </body>

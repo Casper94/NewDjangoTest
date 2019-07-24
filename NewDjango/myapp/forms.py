@@ -1,8 +1,8 @@
-from django.forms import forms
+from django.forms import ModelForm
 from .models import Student
 
 
-class StudentForm(forms):
-    class meta:
+class StudentForm(ModelForm):
+    class Meta:
         model = Student
-        fields = "__all__"
+        fields = ('name', 'address')

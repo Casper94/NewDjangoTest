@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Student
 from .forms import StudentForm
 
@@ -27,13 +27,34 @@ def test(request):
 
 def home(request):
     if request.method =="POST":
-        name = request
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/contactus')
     else:
-
-    form = StudentForm()
-    return render(request,"Home.html",{'form':form})
+        form = StudentForm()
+        return render(request,"Home.html",{'form':form})
 
 
 def contactus(request):
-    form= StudentForm()
-    return render(request,"Contact Us.html",{'form':form})
+    students = Student.objects.all()
+    return render(request,"Contact Us.html",{'students': students})
+
+
+def delete(request,id):
+    student =  Student.objects.get(id=id)
+    student.delete()
+    return redirect("/contactus")
+
+def update(request, id):
+    student = Student.objects.get(id=id)
+    form = StudentForm(request.POST, instance = student)
+    if form.is_valid():
+        form.save()
+        return redirect("/contactus")
+    return render(request,"edit.html",{'student':student})
+
+
+def edit(request,id):
+    student = Student.objects.get(id=id)
+    return render(request,"edit.html",{'student':student})
